@@ -12,8 +12,16 @@ MAINTAINER Diego Schmidt <dceschmidt@gmail.com>
 ENV DEBIAN_FRONTEND=noninteractive
 
 ## Update packages and install software
-#RUN apt-get update \
-#    && apt-get install -y openvpn inetutils-traceroute inetutils-ping wget curl \
-#    && curl -L https://github.com/jwilder/dockerize/releases/download/v0.2.0/dockerize-linux-amd64-v0.2.0.tar.gz | tar -C /usr/local/bin -xzv \
-#    && rm -rfv dockerize-linux-amd64-v0.2.0.tar.gz \
-#    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+RUN apt-get update  \
+    && apt-get install -y squid3 \
+    && mv -f /etc/squid/squid.conf /etc/squid/squid.conf.original \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ADD squid/ /etc/squid/
+
+EXPOSE 3128
+
+RUN chmod +x /etc/squid/squid-*.sh \
+    && mkdir -p /etc/service/squid \
+    && ln -s /etc/squid/squid-run.sh /etc/service/squid/run \
+    && ln -s /etc/squid/squid-finish.sh /etc/service/squid/finish
