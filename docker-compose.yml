@@ -1,0 +1,22 @@
+version: '2'
+services:
+  openvpn-client:
+    build: .
+    container_name: openvpn-proxy
+    image: dceschmidt/openvpn-proxy
+    privileged: true
+    restart: always
+    ports:
+      - "1022:22"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./tmp/config:/config
+    environment:
+      OPENVPN_PROVIDER: PUREVPN
+      OPENVPN_USERNAME: username
+      OPENVPN_PASSWORD: password
+      OPENVPN_OPTS: "--inactive 3600 --ping 10 --ping-exit 60"
+      LOCAL_NETWORK: 10.0.0.0/24
