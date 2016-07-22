@@ -1,2 +1,2 @@
 # docker-openvpn-proxy
-Docker OpenVPN Client and Proxy Server
+Docker OpenVPN Client and Squid Proxy Server
