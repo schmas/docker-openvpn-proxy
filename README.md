@@ -1,3 +1,6 @@
+[![](https://images.microbadger.com/badges/version/dceschmidt/openvpn-proxy.svg)](https://hub.docker.com/r/dceschmidt/openvpn-proxy)
+[![](https://images.microbadger.com/badges/image/dceschmidt/openvpn-proxy.svg)](https://hub.docker.com/r/dceschmidt/openvpn-proxy)
+
 # docker-openvpn-proxy
 Docker OpenVPN Client and Squid Proxy Server
 
